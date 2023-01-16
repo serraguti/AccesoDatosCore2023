@@ -23,6 +23,10 @@ namespace AccesoDatosCore.Controllers
 
         public IActionResult EmpleadosSalario()
         {
+            //TENDRIAMOS QUE ENVIAR LA COLECCION DE "SALARIOS"
+            //A LA VISTA
+            List<int> salarios = new List<int> { 500000, 250000, 30000, 125000, 390000 };
+            ViewData["SALARIOS"] = salarios;
             //UTILIZAMOS EL REPOSITORY DE EMPLEADOS
             List<Empleado> empleados = repo.GetEmpleados();
             return View(empleados);

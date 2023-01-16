@@ -1,11 +1,16 @@
 ﻿@model List<Empleado>
 
+@{
+    List<int> listaSalarios = ViewData["SALARIOS"] as List<int>;
+}
+
 <h1 style="color:blue">Buscador empleados</h1>
 
 <form method="post">
     <label>Introduzca salario</label>
-    <input type="text" name="salario"
-        class="form-control" required/>
+    <select name="salario">
+
+    </select>
     <button class="btn btn-info">
         Buscar empleados
     </button>

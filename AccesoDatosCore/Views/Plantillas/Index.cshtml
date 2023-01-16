@@ -1,0 +1,40 @@
+﻿@model List<Plantilla>
+
+<h1>Plantilla Hospital</h1>
+
+<form method="post">
+    <label>Introduzca función: </label>
+    <input type="text" name="funcion"
+        class="form-control" required/>
+    <button class="btn btn-success">
+        Buscar empleados
+    </button>
+</form>
+
+@if (Model == null)
+{
+    <h1>No hay empleados</h1>
+}
+else
+{
+<table class="table table-warning">
+    <thead>
+        <tr>
+            <th>APELLIDO</th>
+            <th>FUNCION</th>
+            <th>SALARIO</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Plantilla plan in Model)
+        {
+            <tr>
+                <td>@plan.Apellido</td>
+                <td>@plan.Funcion</td>
+                <td>@plan.Salario</td>
+            </tr>
+        }
+    </tbody>
+</table>    
+}
+

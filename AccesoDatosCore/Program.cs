@@ -9,9 +9,13 @@ string cadenaConexion =
     builder.Configuration.GetConnectionString("hospitallocal");
 //VAMOS A ENVIAR DIRECTAMENTE EL REPOSITORIO
 //DEBEMOS CREAR MANUALMENTE EL REPOSITORIO CON LA CADENA Y ENVIARLO
-RepositoryEmpleados repo = new RepositoryEmpleados(cadenaConexion);
+RepositoryEmpleados repoEmp = new RepositoryEmpleados(cadenaConexion);
 //INDICAMOS AL PROGRAMA EL REPOSITORIO A UTILIZAR
-builder.Services.AddTransient<RepositoryEmpleados>(z => repo);
+builder.Services.AddTransient<RepositoryEmpleados>(z => repoEmp);
+
+RepositoryPlantilla repoPlantilla = new RepositoryPlantilla(cadenaConexion);
+builder.Services.AddTransient<RepositoryPlantilla>(z => repoPlantilla);
+
 
 var app = builder.Build();
 
