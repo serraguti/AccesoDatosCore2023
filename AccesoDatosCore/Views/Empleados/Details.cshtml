@@ -1,0 +1,11 @@
+﻿@model Empleado
+
+<h1>Apellido: @Model.Apellido</h1>
+<h2>Oficio: @Model.Oficio</h2>
+<h2>Salario: @Model.Salario</h2>
+<h2>Id Empleado: @Model.IdEmpleado</h2>
+
+<a asp-controller="Empleados"
+    asp-action="Index">
+    Volver al listado
+</a>
