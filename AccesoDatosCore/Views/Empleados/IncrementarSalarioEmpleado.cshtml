@@ -1,0 +1,35 @@
+﻿@model Empleado
+
+@{
+    //RECUPERAMOS LOS DATOS DE VIEWDATA (List<Empleado>)
+    List<Empleado> empleados = ViewData["EMPLEADOS"] as List<Empleado>;
+}
+
+<h1>Incrementar salario Empleado</h1>
+
+<form method="post">
+    <label>Introduzca ID empleado</label>
+    <select class="form-control" name="idempleado">
+        @foreach (Empleado emp in empleados)
+        {
+            <option value="@emp.IdEmpleado">
+                @emp.Apellido
+            </option>
+        }
+    </select>
+    <br/>
+    <label>Introduzca incremento</label>
+    <input type="text" name="incremento"
+        class="form-control" required/>
+    <br/>
+    <button class="btn btn-info">
+        Incrementar salario
+    </button>
+</form>
+<hr/>
+
+@if (Model != null){
+    <h1 style="color:blue">@Model.Apellido</h1>
+    <h2>Oficio: @Model.Oficio</h2>
+    <h2 style="color:red">Salario: @Model.Salario</h2>
+}

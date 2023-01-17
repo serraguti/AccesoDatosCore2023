@@ -2,6 +2,11 @@
 
 <h1>Empleados a lo bruto...</h1>
 
+<a asp-controller="Empleados"
+    asp-action="IncrementarSalarioEmpleado">
+    Incrementar salario empleado
+</a>
+
 <ul>
     @foreach (Empleado emp in Model)
     {

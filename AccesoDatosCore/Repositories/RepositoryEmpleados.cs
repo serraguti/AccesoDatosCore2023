@@ -90,5 +90,19 @@ namespace AccesoDatosCore.Repositories
             this.com.Parameters.Clear();
             return emp;
         }
+
+        public void IncrementarSalarioEmpleado(int idempleado, int incremento)
+        {
+            string sql = "UPDATE EMP SET SALARIO = SALARIO + @INCREMENTO WHERE EMP_NO=@IDEMPLEADO";
+            SqlParameter pamincremento = new SqlParameter("@INCREMENTO", incremento);
+            SqlParameter pamid = new SqlParameter("@IDEMPLEADO", idempleado);
+            this.com.Parameters.Add(pamincremento);
+            this.com.Parameters.Add(pamid);
+            this.com.CommandText = sql;
+            this.cn.Open();
+            this.com.ExecuteNonQuery();
+            this.cn.Close();
+            this.com.Parameters.Clear();
+        }
     }
 }

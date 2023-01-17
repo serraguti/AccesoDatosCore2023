@@ -62,5 +62,38 @@ namespace AccesoDatosCore.Repositories
             this.com.Parameters.Clear();
             return lista;
         }
+
+        //METODO PARA DEVOLVER LAS DIFERENTES FUNCIONES
+        public List<string> GetFunciones()
+        {
+            string sql = "SELECT DISTINCT FUNCION FROM PLANTILLA";
+            this.com.CommandText = sql;
+            List<string> funciones = new List<string>();
+            this.cn.Open();
+            this.reader = this.com.ExecuteReader();
+            while (this.reader.Read())
+            {
+                string funcion = this.reader["FUNCION"].ToString();
+                funciones.Add(funcion);
+            }
+            this.reader.Close();
+            this.cn.Close();
+            return funciones;
+        }
+
+        public int IncrementarSalariosFunciones(string funcion, int incremento)
+        {
+            string sql = "UPDATE PLANTILLA SET SALARIO = SALARIO + @INCREMENTO WHERE FUNCION=@FUNCION";
+            SqlParameter pamfuncion = new SqlParameter("@FUNCION", funcion);
+            SqlParameter pamincremento = new SqlParameter("@INCREMENTO", incremento);
+            this.com.Parameters.Add(pamfuncion);
+            this.com.Parameters.Add(pamincremento);
+            this.com.CommandText = sql;
+            this.cn.Open();
+            int modificados = this.com.ExecuteNonQuery();
+            this.cn.Close();
+            this.com.Parameters.Clear();
+            return modificados;
+        }
     }
 }
