@@ -1,0 +1,52 @@
+﻿@model List<Plantilla>
+
+@{
+    List<string> funciones = ViewData["FUNCIONES"] as List<string>;
+}
+
+<h1 style="color:blue">
+    Incremento salarial plantilla funciones
+</h1>
+
+<form method="post">
+    <label>Seleccione una función</label>
+    <select name="funcion" class="form-control">
+        @foreach (string fun in funciones)
+        {
+            <option value="@fun">@fun</option>
+        }
+    </select>
+    <br/>
+    <label>Incremento salarial: </label>
+    <input type="number" name="incremento" class="form-control"/>
+    <br/>
+    <button class="btn btn-success">
+        Incrementar salarios
+    </button>
+</form>
+
+<h1 style="color:red">
+    @ViewData["MENSAJE"]
+</h1>
+
+@if (Model != null) {
+    <table class="table table-info">
+        <thead>
+            <tr>
+                <th>APELLIDO</th>
+                <th>FUNCION</th>
+                <th>SALARIO</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Plantilla plan in Model)
+            {
+                <tr>
+                    <td>@plan.Apellido</td>
+                    <td>@plan.Funcion</td>
+                    <td>@plan.Salario</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
